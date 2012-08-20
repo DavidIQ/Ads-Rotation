@@ -9,7 +9,7 @@
 		
 		<title lang="en-gb">Ads Rotation</title>
 		
-		<description lang="en-gb">Displays ads and rotates them using javascript.</description>
+		<description lang="en-gb">Displays ads and rotates them using the jQuery Cycle Plugin: http://jquery.malsup.com/cycle/</description>
 		
 		<author-group>
 			<author>
