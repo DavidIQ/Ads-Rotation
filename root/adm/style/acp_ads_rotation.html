@@ -1,0 +1,103 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+<!-- IF not S_ADS_ROTATION_ENABLED -->
+	onload = function()
+	{
+		dE('ads_rotation_additional_settings', 0);
+	}
+<!-- ENDIF -->
+	function verify_delete()
+	{
+		return confirm('{LA_DELETE_CONFIRM}');
+	}
+// ]]>
+</script>
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_ADS_ROTATION_CONFIG}</h1>
+
+<p>{L_ACP_ADS_ROTATION_CONFIG_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_ads_rotation" method="post" action="{U_ACTION}" enctype="multipart/form-data">
+<fieldset>
+	<legend>{L_ADS_ROTATION_OPTIONS}</legend>
+	<dl>
+		<dt><label>{L_ADS_ROTATION_VERSION}:</label></dt>
+		<dd><label>{ADS_ROTATION_VERSION}</label></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_ADS_ROTATION_IMG_DIR}:</label></dt>
+		<dd><label>{ADS_ROTATION_IMG_DIR}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="ads_rotation_enabled">{L_ADS_ROTATION_ENABLE}:</label></dt>
+		<dd><label><input type="radio" name="ads_rotation_enabled" id="ads_rotation_enabled" value="1"<!-- IF S_ADS_ROTATION_ENABLED --> checked="checked"<!-- ENDIF --> onclick="dE('ads_rotation_additional_settings', 1);" class="radio" /> {L_YES}</label>
+		<label><input type="radio" name="ads_rotation_enabled" value="0"<!-- IF not S_ADS_ROTATION_ENABLED --> checked="checked"<!-- ENDIF --> onclick="dE('ads_rotation_additional_settings', 0);" class="radio" /> {L_NO}</label></dd>
+	</dl>
+    <dl id="ads_rotation_ad_count_dl">
+        <dt><label for="ads_rotation_ad_count">{L_ADS_ROTATION_AD_COUNT}:</label><br /><span>{L_ADS_ROTATION_AD_COUNT_EXPLAIN}</span></dt></dt></dt>
+        <dd><select type="radio" name="ads_rotation_ad_count" id="ads_rotation_ad_count">{S_AD_COUNT_OPTIONS}</select></dd>
+    </dl>
+</fieldset>
+	<div id="ads_rotation_additional_settings">
+		<fieldset>
+			<legend>{L_ADS_ROTATION_ADD}</legend>
+			<dl>
+				<dt><label for="ads_rotation_image">{L_ADS_ROTATION_IMAGE}:</label><br /><span>{L_ADS_ROTATION_IMAGE_EXPLAIN}</span></dt></dt>
+				<dd><input type="file" name="ads_rotation_image" id="ads_rotation_image" value="" style="width:75%" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="ads_rotation_description">{L_ADS_ROTATION_DESCRIPTION}:</label><br /><span>{L_ADS_ROTATION_DESCRIPTION_EXPLAIN}</span></dt>
+				<dd><input type="text" class="input" name="ads_rotation_description" value="" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="ads_rotation_url">{L_ADS_ROTATION_URL}:</label><br /><span>{L_ADS_ROTATION_URL_EXPLAIN}</span></dt>
+				<dd><input type="text" class="input" name="ads_rotation_url" value="" /><br /></dd>
+			</dl>
+		</fieldset>
+	</div>
+	<fieldset>
+		<div style="width: 100%; text-align: center;"><input class="button1" type="submit" name="submit" value="{L_SUBMIT}" id="submit" /></div>
+	</fieldset>
+	<table cellspacing="1">
+		<col class="row1" /><col class="row2" /><col class="row2" /><col class="row2" />
+	<thead>
+	<tr>
+		<th>{L_ADS_ROTATION_IMAGE}</th>
+		<th>{L_ADS_ROTATION_DESCRIPTION}</th>
+		<th>{L_ADS_ROTATION_AD_STATUS}</th>
+		<th>&nbsp;</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!-- IF not .ads -->
+		<tr>
+			<td class="row1" colspan="3" style="text-align: center;">{L_NO_ADS}</td>
+		</tr>
+	<!-- ENDIF -->
+	<!-- BEGIN ads -->
+	<!-- IF ads.U_IMAGE -->
+	<tr>
+		<td<!-- IF ads.S_DISABLED --> class="errorbox"<!-- ENDIF --> style="text-align: left;"><strong><a href="{ads.U_IMAGE}">{ads.AD_IMAGE}</a></strong></td>
+		<td<!-- IF ads.S_DISABLED --> class="errorbox"<!-- ENDIF --> style="text-align: left;"><!-- IF ads.AD_URL --><a href="{ads.AD_URL}"><!-- ENDIF --><!-- IF ads.AD_DESCRIPTION -->{ads.AD_DESCRIPTION}<!-- ELSE -->N/A<!-- ENDIF --><!-- IF ads.AD_URL --></a><!-- ENDIF --></td>
+		<td<!-- IF ads.S_DISABLED --> class="errorbox"<!-- ENDIF --> style="text-align: left;"><a href="{ads.U_STATUS_CHANGE}"><!-- IF ads.S_DISABLED -->{L_ADS_ROTATION_AD_ENABLE}<!-- ELSE -->{L_ADS_ROTATION_AD_DISABLE}<!-- ENDIF --></a></td>
+		<td style="text-align: center;"><a href="{ads.U_DELETE}" onclick="return verify_delete();"><img src="./images/icon_delete.gif" alt="{L_ADS_ROTATION_AD_DELETE}" title="{L_ADS_ROTATION_AD_DELETE}" /></a></td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- END ads -->
+	</tbody>
+	</table>
+{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE overall_footer.html -->

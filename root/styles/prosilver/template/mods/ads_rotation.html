@@ -1,0 +1,42 @@
+<!-- IF S_ADS_ROTATION and .ads -->
+<style type="text/css" media="screen, projection">
+<!--
+	.phpbb_ad_rotation
+	{
+		width: 100%;
+		text-align: center;
+	}
+	.phpbb_ad_rotation_img
+	{
+		max-height: 300px;
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+-->
+</style>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js" type="text/javascript"></script>
+<script src="{T_TEMPLATE_PATH}/mods/jquery.cycle.all.js" type="text/javascript"></script>
+<div class="post bg1">
+<div class="inner"><span class="corners-top"><span></span></span>
+<div class="phpbb_ads_rotation" style="margin: 0 auto;">
+<!-- BEGIN ads -->
+	<div class="phpbb_ad_rotation"<!-- IF not ads.AD_FIRST --> style="display: none;"<!-- ENDIF -->><div>{ads.AD_SLIDE}</div></div>
+<!-- END ads -->
+</div>
+<span class="corners-bottom"><span></span></span></div>
+</div>
+<br style="clear: both;" />
+<script type="text/javascript">
+// <![CDATA[
+	//More info: http://jquery.malsup.com/cycle/
+	$(document).ready(function () {
+		$('.phpbb_ads_rotation').cycle({
+			fx: 'scrollLeft',
+			speed: 900,
+			timeout: 4000,
+			pause: 1
+		});
+	});
+// ]]>
+</script>
+<!-- ENDIF -->
